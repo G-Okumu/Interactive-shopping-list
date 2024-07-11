@@ -11,10 +11,13 @@ const shoppingList = [
     }
 ]
 
-let div_for_items = document.getElementById('card-list');
+function display() {
+    let div_for_items = document.getElementById('card-list');
 
-shoppingList.forEach((el) => {
-    div_for_items.innerHTML += `
+    div_for_items.innerHTML = '';
+
+    shoppingList.forEach((el) => {
+        div_for_items.innerHTML += `
     
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <img class="rounded-t-lg" src="${el.image}" alt="item image" />
@@ -32,4 +35,27 @@ shoppingList.forEach((el) => {
 
     
     `
-})
+    })
+}
+
+
+
+function addItem(event) {
+    event.preventDefault();
+
+    let itemname = document.getElementById('name').value;
+    let itemprice = parseInt(document.getElementById('price').value);
+    let itemimage = document.getElementById('image').value;
+
+    let newItem = {
+        name: itemname,
+        price: itemprice,
+        image: itemimage
+    }
+
+    shoppingList.push(newItem);
+    display();
+
+}
+
+display();
